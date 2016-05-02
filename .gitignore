@@ -1,0 +1,11 @@
+.metadata
+.project
+.settings
+.classpath
+.DS_Store
+.log
+bin
+target
+dump.rdb
+*.txt
+*.log
