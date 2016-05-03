@@ -8,7 +8,23 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 	@Override
 	public Spacecraft move(Spacecraft spacecraft) {
 		
-		return new Spacecraft(1,3,"N");
+		spacecraft.getCommands().forEach(command -> {
+			
+			if("M".equalsIgnoreCase(command)) {
+				spacecraft.move();
+			}
+			
+			if("R".equalsIgnoreCase(command)) {
+				spacecraft.right();
+			}
+			
+			if("L".equalsIgnoreCase(command)) {
+				spacecraft.left();
+			}
+			
+		});
+		
+		return spacecraft;
 	}
 
 }
