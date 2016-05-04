@@ -51,35 +51,16 @@ public class Spacecraft {
 	
 	public void left() {
 		
-		if("N".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "W";
+		WindRose windRose = WindRose.getLeft(cardinalPoint);
 		
-		} else if("W".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "S";
-		
-		} else if("S".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "E";
-		
-		} else if("E".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "N";
-		}
-		
+		this.cardinalPoint = windRose.getLeft();
 	}
 	
 	public void right() {
 		
-		if("N".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "E";
+		WindRose windRose = WindRose.getLeft(cardinalPoint);
 		
-		} else if("E".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "S";
-		
-		} else if("S".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "W";
-		
-		} else if("W".equalsIgnoreCase(cardinalPoint)) {
-			cardinalPoint = "N";
-		}
+		this.cardinalPoint = windRose.getRight();
 	}
 	
 	public static class SpacecrafBuilder {

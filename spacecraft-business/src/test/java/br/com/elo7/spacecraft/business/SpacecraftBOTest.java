@@ -34,7 +34,7 @@ public class SpacecraftBOTest {
 											commands(commands).
 											build();
 		
-		Spacecraft spacecraftReturn = spacecraftBO.move(spacecraft);
+		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCoordinateX(), equalTo(1));
 	}
@@ -51,7 +51,7 @@ public class SpacecraftBOTest {
 											commands(commands).
 											build();
 		
-		Spacecraft spacecraftReturn = spacecraftBO.move(spacecraft);
+		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCoordinateY(), equalTo(1));
 	}
@@ -68,7 +68,7 @@ public class SpacecraftBOTest {
 											commands(commands).
 											build();
 		
-		Spacecraft spacecraftReturn = spacecraftBO.move(spacecraft);
+		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCardinalPoint(), equalTo("S"));
 	}

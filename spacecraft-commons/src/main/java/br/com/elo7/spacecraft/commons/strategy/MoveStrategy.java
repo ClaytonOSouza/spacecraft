@@ -55,8 +55,9 @@ public enum MoveStrategy {
 	
 	static {
 		
-		for (MoveStrategy move : values()) {
-			map.put(move.getCardinalPoint(), move);
+		for (MoveStrategy moveStrategy : values()) {
+			map.put(moveStrategy.getCardinalPoint().toUpperCase(), moveStrategy);
+			map.put(moveStrategy.getCardinalPoint().toLowerCase(), moveStrategy);
 		}
 	}
 	

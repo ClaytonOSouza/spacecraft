@@ -4,6 +4,6 @@ import br.com.elo7.spacecraft.model.Spacecraft;
 
 public interface SpacecraftBO {
 
-	Spacecraft move(Spacecraft spacecraft);
+	Spacecraft executeCommands(Spacecraft spacecraft);
 
 }

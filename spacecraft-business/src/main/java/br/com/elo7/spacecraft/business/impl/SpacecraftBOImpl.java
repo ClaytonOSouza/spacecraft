@@ -6,7 +6,7 @@ import br.com.elo7.spacecraft.model.Spacecraft;
 public class SpacecraftBOImpl implements SpacecraftBO {
 
 	@Override
-	public Spacecraft move(Spacecraft spacecraft) {
+	public Spacecraft executeCommands(Spacecraft spacecraft) {
 		
 		spacecraft.getCommands().forEach(command -> {
 			
