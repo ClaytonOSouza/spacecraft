@@ -2,6 +2,8 @@ package br.com.elo7.spacecraft.model;
 
 import java.util.List;
 
+import br.com.elo7.spacecraft.commons.strategy.MoveStrategy;
+
 public class Spacecraft {
 	
 	private Integer coordinateX;
@@ -39,22 +41,12 @@ public class Spacecraft {
 	
 	public void move(){
 		
-		if("N".equalsIgnoreCase(cardinalPoint)) {
-			coordinateY++; 
-		}
+		MoveStrategy move = MoveStrategy.getMoveStrategy(cardinalPoint);
 		
-		if("E".equalsIgnoreCase(cardinalPoint)) {
-			coordinateX++;
-		}
+		move.toMove(coordinateX, coordinateY);
 		
-		if("S".equalsIgnoreCase(cardinalPoint)) {
-			coordinateY--;
-		}
-		
-		if("W".equalsIgnoreCase(cardinalPoint)) {
-			coordinateX--;
-		}
-		
+		this.coordinateX = move.getCoordinateX();
+		this.coordinateY = move.getCoordinateY();
 	}
 	
 	public void left() {

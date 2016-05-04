@@ -8,17 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spacecraft-model</artifactId>
-	
-	<name>spacecraft-model</name>
-	
-	<dependencies>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spacecraft-commons</artifactId>
-		</dependency>
-		
-	</dependencies>
+	<artifactId>spacecraft-commons</artifactId>
 	
 </project>
