@@ -1,17 +1,18 @@
 package br.com.elo7.spacecraft.business.impl;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
+import br.com.elo7.spacecraft.model.Plateau;
 import br.com.elo7.spacecraft.model.Spacecraft;
 
 public class SpacecraftBOImpl implements SpacecraftBO {
 
 	@Override
-	public Spacecraft executeCommands(Spacecraft spacecraft) {
+	public Spacecraft executeCommands(Plateau plateau, Spacecraft spacecraft) {
 		
 		spacecraft.getCommands().forEach(command -> {
 			
 			if("M".equalsIgnoreCase(command)) {
-				spacecraft.move();
+				spacecraft.move(plateau);
 			}
 			
 			if("R".equalsIgnoreCase(command)) {

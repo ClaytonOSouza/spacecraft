@@ -39,7 +39,7 @@ public class Spacecraft {
 		return commands;
 	}
 	
-	public void move(){
+	public void move(Plateau plateau){
 		
 		MoveStrategy move = MoveStrategy.getMoveStrategy(cardinalPoint);
 		
@@ -47,6 +47,21 @@ public class Spacecraft {
 		
 		this.coordinateX = move.getCoordinateX();
 		this.coordinateY = move.getCoordinateY();
+		
+		this.verifyPlateuCoordinates(plateau);
+	}
+	
+	private void verifyPlateuCoordinates(Plateau plateu) {
+		
+		if(coordinateX > plateu.getUpperRightX() || coordinateX < 0) {
+			//TODO: implementar exception especializada
+			throw new RuntimeException();
+		}
+		
+		if(coordinateY > plateu.getUpperRightY() || coordinateY < 0) {
+			//TODO: implementar exception especializada
+			throw new RuntimeException();
+		}
 	}
 	
 	public void left() {
