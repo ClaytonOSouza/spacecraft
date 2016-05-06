@@ -2,7 +2,7 @@ package br.com.elo7.spacecraft.business.impl;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
 import br.com.elo7.spacecraft.model.Spacecraft;
-import br.com.elo7.spacecraft.model.SpacecraftRepository;
+import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 public class SpacecraftBOImpl implements SpacecraftBO {
 

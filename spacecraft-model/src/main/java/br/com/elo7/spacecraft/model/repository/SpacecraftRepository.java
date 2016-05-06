@@ -1,4 +1,6 @@
-package br.com.elo7.spacecraft.model;
+package br.com.elo7.spacecraft.model.repository;
+
+import br.com.elo7.spacecraft.model.Spacecraft;
 
 public interface SpacecraftRepository {
 	

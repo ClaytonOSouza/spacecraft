@@ -10,7 +10,9 @@ public class Plateau {
 		this.upperRightX = upperRightX;
 		this.upperRightY = upperRightY;
 	}
-
+	
+	public Plateau(){}
+	
 	public Integer getUpperRightX() {
 		return upperRightX;
 	}

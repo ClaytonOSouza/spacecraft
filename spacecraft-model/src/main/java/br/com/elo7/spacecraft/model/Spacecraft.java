@@ -3,6 +3,7 @@ package br.com.elo7.spacecraft.model;
 import java.util.List;
 
 import br.com.elo7.spacecraft.commons.strategy.MoveStrategy;
+import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 public class Spacecraft {
 	
@@ -18,6 +19,7 @@ public class Spacecraft {
 	
 	private SpacecraftRepository spacecraftRepository;
 	
+	public Spacecraft(){}
 	
 	private Spacecraft(Integer coordinateX, Integer coordinateY, 
 						String cardinalPoint, List<String> commands, Plateau plateau) {
@@ -76,14 +78,14 @@ public class Spacecraft {
 	
 	public void left() {
 		
-		WindRose windRose = WindRose.getLeft(cardinalPoint);
+		WindRose windRose = WindRose.getWindRose(cardinalPoint);
 		
 		this.cardinalPoint = windRose.getLeft();
 	}
 	
 	public void right() {
 		
-		WindRose windRose = WindRose.getLeft(cardinalPoint);
+		WindRose windRose = WindRose.getWindRose(cardinalPoint);
 		
 		this.cardinalPoint = windRose.getRight();
 	}

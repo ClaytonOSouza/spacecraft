@@ -38,7 +38,7 @@ public enum WindRose {
 		return right;
 	}
 	
-	public static WindRose getLeft(String cardinalPoint) {
+	public static WindRose getWindRose(String cardinalPoint) {
 		return map.get(cardinalPoint);
 	}
 	
