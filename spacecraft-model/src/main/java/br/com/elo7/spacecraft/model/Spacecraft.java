@@ -13,17 +13,21 @@ public class Spacecraft {
 	private String cardinalPoint;
 	
 	private List<String> commands;
-
+	
+	private Plateau plateau;
+	
 	private SpacecraftRepository spacecraftRepository;
 	
-	private Spacecraft(Integer coordinateX, Integer coordinateY, String cardinalPoint, List<String> commands) {
+	
+	private Spacecraft(Integer coordinateX, Integer coordinateY, 
+						String cardinalPoint, List<String> commands, Plateau plateau) {
 		this.coordinateX = coordinateX;
 		this.coordinateY = coordinateY;
 		this.cardinalPoint = cardinalPoint;
 		this.commands = commands;
+		this.plateau = plateau;
 	}
 	
-	public Spacecraft(){}
 	
 	public Integer getCoordinateX() {
 		return coordinateX;
@@ -41,7 +45,11 @@ public class Spacecraft {
 		return commands;
 	}
 	
-	public void move(Plateau plateau){
+	public Plateau getPlateau() {
+		return plateau;
+	}
+	
+	public void move(){
 		
 		MoveStrategy move = MoveStrategy.getMoveStrategy(cardinalPoint);
 		
@@ -50,17 +58,17 @@ public class Spacecraft {
 		this.coordinateX = move.getCoordinateX();
 		this.coordinateY = move.getCoordinateY();
 		
-		this.verifyPlateuCoordinates(plateau);
+		this.verifyPlateuCoordinates();
 	}
 	
-	private void verifyPlateuCoordinates(Plateau plateu) {
+	private void verifyPlateuCoordinates() {
 		
-		if(coordinateX > plateu.getUpperRightX() || coordinateX < 0) {
+		if(coordinateX > plateau.getUpperRightX() || coordinateX < 0) {
 			//TODO: implementar exception especializada
 			throw new RuntimeException();
 		}
 		
-		if(coordinateY > plateu.getUpperRightY() || coordinateY < 0) {
+		if(coordinateY > plateau.getUpperRightY() || coordinateY < 0) {
 			//TODO: implementar exception especializada
 			throw new RuntimeException();
 		}
@@ -92,6 +100,7 @@ public class Spacecraft {
 		this.spacecraftRepository = spacecraftRepository;
 	}
 	
+	
 	public static class SpacecrafBuilder {
 		
 		private Integer coordinateX;
@@ -102,11 +111,15 @@ public class Spacecraft {
 		
 		private List<String> commands;
 		
+		private Plateau plateau;
+		
+		
 		private SpacecrafBuilder(){}
 		
 		public static SpacecrafBuilder create() {
 			return new SpacecrafBuilder();
 		}
+		
 		
 		public SpacecrafBuilder coordinateX(Integer coordinateX) {
 			
@@ -136,8 +149,16 @@ public class Spacecraft {
 			return this;
 		}
 		
+		public SpacecrafBuilder plateau(Plateau plateau) {
+			
+			this.plateau = plateau;
+			
+			return this;
+		}
+		
 		public Spacecraft build() {
-			return new Spacecraft(coordinateX, coordinateY, cardinalPoint, commands);
+			return new Spacecraft(coordinateX, coordinateY, 
+					cardinalPoint, commands, plateau);
 		}
 		
 	}
