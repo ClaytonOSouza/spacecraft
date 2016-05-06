@@ -5,6 +5,6 @@ import br.com.elo7.spacecraft.model.Spacecraft;
 
 public interface SpacecraftBO {
 
-	Spacecraft executeCommands(Plateau plateau, Spacecraft spacecraft);
-
+	public Spacecraft executeCommands(Plateau plateau, Spacecraft spacecraft);
+	
 }

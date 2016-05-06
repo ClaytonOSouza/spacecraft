@@ -13,7 +13,8 @@ public class Spacecraft {
 	private String cardinalPoint;
 	
 	private List<String> commands;
-	
+
+	private SpacecraftRepository spacecraftRepository;
 	
 	private Spacecraft(Integer coordinateX, Integer coordinateY, String cardinalPoint, List<String> commands) {
 		this.coordinateX = coordinateX;
@@ -22,6 +23,7 @@ public class Spacecraft {
 		this.commands = commands;
 	}
 	
+	public Spacecraft(){}
 	
 	public Integer getCoordinateX() {
 		return coordinateX;
@@ -76,6 +78,18 @@ public class Spacecraft {
 		WindRose windRose = WindRose.getLeft(cardinalPoint);
 		
 		this.cardinalPoint = windRose.getRight();
+	}
+	
+	public Spacecraft getSpacecraftByCoordenates() {
+		return spacecraftRepository.getSpacecraftByCoordenates(this); 
+	}
+	
+	public void persist() {
+		spacecraftRepository.persist(this);
+	}
+	
+	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {
+		this.spacecraftRepository = spacecraftRepository;
 	}
 	
 	public static class SpacecrafBuilder {

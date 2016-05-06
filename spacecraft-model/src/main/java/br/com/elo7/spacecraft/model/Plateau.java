@@ -25,7 +25,7 @@ public class Plateau {
 		
 		private Integer upperRightY;
 		
-		public PlateauBuilder(){}
+		private PlateauBuilder(){}
 		
 		public static PlateauBuilder create() {
 			return new PlateauBuilder();
