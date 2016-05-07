@@ -2,7 +2,6 @@ package br.com.elo7.spacecraft.model;
 
 import java.util.List;
 
-import br.com.elo7.spacecraft.commons.strategy.MoveStrategy;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 public class Spacecraft {
@@ -18,8 +17,6 @@ public class Spacecraft {
 	private Plateau plateau;
 	
 	private SpacecraftRepository spacecraftRepository;
-	
-	public Spacecraft(){}
 	
 	private Spacecraft(Integer coordinateX, Integer coordinateY, 
 						String cardinalPoint, List<String> commands, Plateau plateau) {
@@ -51,19 +48,7 @@ public class Spacecraft {
 		return plateau;
 	}
 	
-	public void move(){
-		
-		MoveStrategy move = MoveStrategy.getMoveStrategy(cardinalPoint);
-		
-		move.toMove(coordinateX, coordinateY);
-		
-		this.coordinateX = move.getCoordinateX();
-		this.coordinateY = move.getCoordinateY();
-		
-		this.verifyPlateuCoordinates();
-	}
-	
-	private void verifyPlateuCoordinates() {
+	public void verifyPlateuCoordinates() {
 		
 		if(coordinateX > plateau.getUpperRightX() || coordinateX < 0) {
 			//TODO: implementar exception especializada
@@ -76,26 +61,24 @@ public class Spacecraft {
 		}
 	}
 	
-	public void left() {
-		
-		WindRose windRose = WindRose.getWindRose(cardinalPoint);
-		
-		this.cardinalPoint = windRose.getLeft();
-	}
-	
-	public void right() {
-		
-		WindRose windRose = WindRose.getWindRose(cardinalPoint);
-		
-		this.cardinalPoint = windRose.getRight();
-	}
-	
 	public Spacecraft getSpacecraftByCoordenates() {
 		return spacecraftRepository.getSpacecraftByCoordenates(this); 
 	}
 	
 	public void persist() {
 		spacecraftRepository.persist(this);
+	}
+	
+	public void setCoordinateX(Integer coordinateX) {
+		this.coordinateX = coordinateX;
+	}
+	
+	public void setCoordinateY(Integer coordinateY) {
+		this.coordinateY = coordinateY;
+	}
+	
+	public void setCardinalPoint(String cardinalPoint) {
+		this.cardinalPoint = cardinalPoint;
 	}
 	
 	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {

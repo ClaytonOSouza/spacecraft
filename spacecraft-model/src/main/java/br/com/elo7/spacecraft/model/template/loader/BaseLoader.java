@@ -9,4 +9,5 @@ public class BaseLoader {
 		SpacecraftTemplate.load();
 		PlateauTemplate.load();
 	}
+	
 }

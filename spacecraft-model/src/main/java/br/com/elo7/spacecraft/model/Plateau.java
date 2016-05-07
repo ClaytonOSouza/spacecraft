@@ -11,8 +11,6 @@ public class Plateau {
 		this.upperRightY = upperRightY;
 	}
 	
-	public Plateau(){}
-	
 	public Integer getUpperRightX() {
 		return upperRightX;
 	}

@@ -3,6 +3,7 @@ package br.com.elo7.spacecraft.business.impl;
 import org.springframework.stereotype.Service;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
+import br.com.elo7.spacecraft.business.strategy.CommandsStrategy;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
@@ -18,17 +19,9 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		
 		spacecraft.getCommands().forEach(command -> {
 			
-			if("M".equalsIgnoreCase(command)) {
-				spacecraft.move();
-			}
+			CommandsStrategy commandsStrategy = CommandsStrategy.getCommandsStrategy(command);
 			
-			if("R".equalsIgnoreCase(command)) {
-				spacecraft.right();
-			}
-			
-			if("L".equalsIgnoreCase(command)) {
-				spacecraft.left();
-			}
+			commandsStrategy.executeCommand(spacecraft);
 			
 		});
 		

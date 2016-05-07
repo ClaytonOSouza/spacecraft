@@ -1,53 +1,55 @@
-package br.com.elo7.spacecraft.commons.strategy;
+package br.com.elo7.spacecraft.business.strategy;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import br.com.elo7.spacecraft.model.Spacecraft;
 
 public enum MoveStrategy {
 	
 	North("N") {
 		
 		@Override
-		public void toMove(Integer x, Integer y) {
+		public void toMove(Spacecraft spacecraft) {
 			
-			coordinateX = x;
-			coordinateY = ++y;
+			int coordinateY = spacecraft.getCoordinateY();
+			
+			spacecraft.setCoordinateY(++coordinateY);
 		}
 	},
 	
 	East("E") {
 		
 		@Override
-		public void toMove(Integer x, Integer y) {
+		public void toMove(Spacecraft spacecraft) {
 			
-			coordinateY = y;
-			coordinateX = ++x;
+			int coordinateX = spacecraft.getCoordinateX();
+			
+			spacecraft.setCoordinateX(++coordinateX);
 		}
 	},
 	
 	South("S") {
 		
 		@Override
-		public void toMove(Integer x, Integer y) {
+		public void toMove(Spacecraft spacecraft) {
 			
-			coordinateX = x;
-			coordinateY = --y;
+			int coordinateY = spacecraft.getCoordinateY();
+			
+			spacecraft.setCoordinateY(--coordinateY);
 		}
 	},
 	
 	West("W") {
 		
 		@Override
-		public void toMove(Integer x, Integer y) {
+		public void toMove(Spacecraft spacecraft) {
 			
-			coordinateY = y;
-			coordinateX = --x;
+			int coordinateX = spacecraft.getCoordinateX();
+			
+			spacecraft.setCoordinateX(--coordinateX);
 		}
 	};
-	
-	private static Integer coordinateX;
-	
-	private static Integer coordinateY;
 	
 	private String cardinalPoint;
 	
@@ -65,15 +67,7 @@ public enum MoveStrategy {
 		this.cardinalPoint = cardinalPoint;
 	}
 	
-	public abstract void toMove(Integer x, Integer y);
-	
-	public Integer getCoordinateX() {
-		return coordinateX;
-	}
-	
-	public Integer getCoordinateY() {
-		return coordinateY;
-	}
+	public abstract void toMove(Spacecraft spacecraft);
 	
 	public static MoveStrategy getMoveStrategy(String cardinalPoint) {
 		return map.get(cardinalPoint);
@@ -82,4 +76,5 @@ public enum MoveStrategy {
 	private String getCardinalPoint() {
 		return cardinalPoint;
 	}
+	
 }
