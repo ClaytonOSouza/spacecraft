@@ -13,6 +13,7 @@
 		<module>spacecraft-business</module>
 		<module>spacecraft-model</module>
 		<module>spacecraft-commons</module>
+		<module>spacecraft-services</module>
 	</modules>
 	
 	<properties>
@@ -26,11 +27,15 @@
 		<mockito.version>1.10.19</mockito.version>
 		<fixture-factory.version>3.1.0</fixture-factory.version>
 		
+		<spring.version>4.2.6.RELEASE</spring.version>
+		
 	</properties>
 	
 	<dependencyManagement>
 		
 		<dependencies>
+			
+			<!-- Internal Dependencies -->
 			
 			<dependency>
 				<groupId>${project.groupId}</groupId>
@@ -49,6 +54,14 @@
 				<artifactId>spacecraft-commons</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>spacecraft-services</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<!-- Tests Dependencies -->
 			
 			<dependency>
 				<groupId>junit</groupId>
@@ -75,6 +88,32 @@
 				<groupId>br.com.six2six</groupId>
 				<artifactId>fixture-factory</artifactId>
 				<version>${fixture-factory.version}</version>
+			</dependency>
+			
+			<!-- Several Dependencies -->
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 			
 		</dependencies>
