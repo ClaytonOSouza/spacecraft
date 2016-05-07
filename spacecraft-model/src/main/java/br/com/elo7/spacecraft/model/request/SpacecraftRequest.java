@@ -1,7 +1,12 @@
 package br.com.elo7.spacecraft.model.request;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
@@ -55,7 +60,30 @@ public class SpacecraftRequest implements Serializable {
 	public String getCommands() {
 		return commands;
 	}
-
+	
+	@JsonIgnore
+	public List<String> getListCommands() {
+		
+		if(this.commands != null) {
+			
+			char[] charArray = this.commands.toCharArray();
+			
+			Character[] charObjectArray = ArrayUtils.toObject(charArray);
+			
+			List<Character> commandsCharacter = Arrays.asList(charObjectArray);
+			
+			List<String> listCommands= new ArrayList<>();
+			
+			commandsCharacter.forEach(command -> {
+				listCommands.add(command.toString());
+			});
+			
+			return listCommands;
+		}
+		
+		return null;
+	}
+	
 	public void setCommands(String commands) {
 		this.commands = commands;
 	}

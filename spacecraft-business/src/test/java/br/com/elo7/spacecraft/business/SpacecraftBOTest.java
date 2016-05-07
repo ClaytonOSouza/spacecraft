@@ -15,6 +15,8 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 
 import br.com.elo7.spacecraft.business.impl.SpacecraftBOImpl;
+import br.com.elo7.spacecraft.commons.exception.CoordinateException;
+import br.com.elo7.spacecraft.commons.exception.CrashException;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 import br.com.elo7.spacecraft.model.template.SpacecraftTemplate;
@@ -74,7 +76,7 @@ public class SpacecraftBOTest {
 		verify(spacecraftRepository, times(1)).persist(spacecraft);
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test(expected = CoordinateException.class)
 	public void mustValidateUpperRightX() throws Exception {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_UPPER_RIGHT_X);
@@ -82,7 +84,7 @@ public class SpacecraftBOTest {
 		spacecraftBO.executeCommands(spacecraft);
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test(expected = CoordinateException.class)
 	public void mustValidateLowerLeftX() throws Exception {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_LOWER_LEFT_X);
@@ -90,7 +92,7 @@ public class SpacecraftBOTest {
 		spacecraftBO.executeCommands(spacecraft);
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test(expected = CoordinateException.class)
 	public void mustValidateUpperRightY() throws Exception {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_UPPER_RIGHT_Y);
@@ -98,7 +100,7 @@ public class SpacecraftBOTest {
 		spacecraftBO.executeCommands(spacecraft);
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test(expected = CoordinateException.class)
 	public void mustValidateLowerLeftY() throws Exception {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_LOWER_LEFT_Y);
@@ -106,7 +108,7 @@ public class SpacecraftBOTest {
 		spacecraftBO.executeCommands(spacecraft);
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test(expected = CrashException.class)
 	public void mustValidateCrash() throws Exception {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_CRASH);

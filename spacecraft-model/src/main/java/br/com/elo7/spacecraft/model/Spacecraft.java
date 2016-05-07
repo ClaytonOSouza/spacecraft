@@ -2,6 +2,8 @@ package br.com.elo7.spacecraft.model;
 
 import java.util.List;
 
+import br.com.elo7.spacecraft.commons.exception.CoordinateException;
+import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 public class Spacecraft {
@@ -51,13 +53,11 @@ public class Spacecraft {
 	public void verifyPlateuCoordinates() {
 		
 		if(coordinateX > plateau.getUpperRightX() || coordinateX < 0) {
-			//TODO: implementar exception especializada
-			throw new RuntimeException();
+			throw new CoordinateException(ErrorExceptionCode.COORDINATE_ERROR);
 		}
 		
 		if(coordinateY > plateau.getUpperRightY() || coordinateY < 0) {
-			//TODO: implementar exception especializada
-			throw new RuntimeException();
+			throw new CoordinateException(ErrorExceptionCode.COORDINATE_ERROR);
 		}
 	}
 	

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
 import br.com.elo7.spacecraft.business.strategy.CommandsStrategy;
+import br.com.elo7.spacecraft.commons.exception.CrashException;
+import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
@@ -37,7 +39,7 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		Spacecraft spacecraftReturned = spacecraft.getSpacecraftByCoordenates();
 		
 		if(spacecraftReturned != null) {
-			throw new RuntimeException();
+			throw new CrashException(ErrorExceptionCode.CRASH_ERROR);
 		}
 	}
 	
