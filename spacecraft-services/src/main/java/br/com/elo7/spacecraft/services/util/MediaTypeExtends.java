@@ -1,4 +1,4 @@
-package br.com.elo7.spacecraft.services;
+package br.com.elo7.spacecraft.services.util;
 
 import javax.ws.rs.core.MediaType;
 

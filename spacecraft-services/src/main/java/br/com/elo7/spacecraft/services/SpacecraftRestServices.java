@@ -14,10 +14,11 @@ import org.springframework.stereotype.Controller;
 import br.com.elo7.spacecraft.business.SpacecraftBO;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.request.SpacecraftRequest;
+import br.com.elo7.spacecraft.services.util.MediaTypeExtends;
 
 @Controller
 @Path("/spacecraft")
-public class SpacecraftServices {
+public class SpacecraftRestServices {
 	
 	@Autowired
 	private SpacecraftBO spacecraftBO;
