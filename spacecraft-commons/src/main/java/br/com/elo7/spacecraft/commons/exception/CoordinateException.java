@@ -7,10 +7,14 @@ public class CoordinateException extends RuntimeException {
 	
 	private static final long serialVersionUID = -7585457299766315168L;
 	
+	private final static ErrorExceptionCode errorExceptionCode = ErrorExceptionCode.COORDINATE_ERROR;
+	
 	private Errors errors;
 	
 	public CoordinateException() {
-		super();
+		super(errorExceptionCode.getMessage());
+		errors = new Errors();
+		errors.add(errorExceptionCode);
 	}
 	
 	public CoordinateException(ErrorExceptionCode errorExceptionCode) {

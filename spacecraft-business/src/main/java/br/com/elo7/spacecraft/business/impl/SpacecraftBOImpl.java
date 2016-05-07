@@ -1,11 +1,14 @@
 package br.com.elo7.spacecraft.business.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
 import br.com.elo7.spacecraft.business.strategy.CommandsStrategy;
 import br.com.elo7.spacecraft.commons.exception.CrashException;
+import br.com.elo7.spacecraft.commons.validation.BeanValidator;
 import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
+import br.com.elo7.spacecraft.commons.validation.groups.ExecuteCommands;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
@@ -14,8 +17,13 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 	
 	private SpacecraftRepository spacecraftRepository;
 	
+	private BeanValidator beanValidator;
+	
+	
 	@Override
 	public Spacecraft executeCommands(Spacecraft spacecraft) {
+		
+		beanValidator.validate(spacecraft, ExecuteCommands.class);
 		
 		spacecraft.setSpacecraftRepository(spacecraftRepository);
 		
@@ -48,4 +56,8 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		this.spacecraftRepository = spacecraftRepository;
 	}
 	
+	@Autowired
+	public void setBeanValidator(BeanValidator beanValidator) {
+		this.beanValidator = beanValidator;
+	}
 }

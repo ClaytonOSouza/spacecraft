@@ -1,9 +1,15 @@
 package br.com.elo7.spacecraft.model;
 
-public class Plateau {
+import javax.validation.constraints.NotNull;
 
+import br.com.elo7.spacecraft.commons.validation.groups.ExecuteCommands;
+
+public class Plateau {
+	
+	@NotNull(groups={ExecuteCommands.class})
 	private Integer upperRightX;
 	
+	@NotNull(groups={ExecuteCommands.class})
 	private Integer upperRightY;
 	
 	private Plateau(Integer upperRightX, Integer upperRightY) {

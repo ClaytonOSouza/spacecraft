@@ -15,6 +15,17 @@ public class Error implements Serializable {
 	
 	private String message;
 	
+	private String invalidValue;
+	
+	private String param;
+	
+	public Error(ErrorExceptionCode errorExceptionCode, String invalidValue, String param, String message) {
+		this.code = errorExceptionCode.getCode();
+		this.invalidValue = invalidValue;
+		this.param = param;
+		this.message = message;
+	}
+	
 	public Error(ErrorExceptionCode errorExceptionCode) {
 		this.code = errorExceptionCode.getCode();
 		this.message = errorExceptionCode.getMessage();
@@ -26,6 +37,14 @@ public class Error implements Serializable {
 	
 	public String getMessage() {
 		return message;
+	}
+	
+	public String getInvalidValue() {
+		return invalidValue;
+	}
+	
+	public String getParam() {
+		return param;
 	}
 	
 }

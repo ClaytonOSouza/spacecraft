@@ -17,6 +17,7 @@ import org.mockito.Spy;
 import br.com.elo7.spacecraft.business.impl.SpacecraftBOImpl;
 import br.com.elo7.spacecraft.commons.exception.CoordinateException;
 import br.com.elo7.spacecraft.commons.exception.CrashException;
+import br.com.elo7.spacecraft.commons.validation.BeanValidator;
 import br.com.elo7.spacecraft.model.Spacecraft;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 import br.com.elo7.spacecraft.model.template.SpacecraftTemplate;
@@ -29,12 +30,15 @@ public class SpacecraftBOTest {
 	@Mock
 	private SpacecraftRepository spacecraftRepository;
 	
+	@Mock
+	private BeanValidator beanValidator;
 	
 	@Before
 	public void before() {
 		loadTemplatesForFixture();
 		initMocks(this);
 		spacecraftBO.setSpacecraftRepository(spacecraftRepository);
+		spacecraftBO.setBeanValidator(beanValidator);
 	}
 	
 	@Test

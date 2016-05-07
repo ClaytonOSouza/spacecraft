@@ -3,7 +3,8 @@ package br.com.elo7.spacecraft.commons.validation;
 public enum ErrorExceptionCode {
 	
 	CRASH_ERROR(1, "Has one body in this coordinates. Please try again."),
-	COORDINATE_ERROR(2, "Don't have more space in plateau. Please try again.");
+	COORDINATE_ERROR(2, "Don't have more space in plateau. Please try again."),
+	BEAN_VALIDATOR_ERROR(3, "Bean validator error.");
 	
 	private int code;
 	

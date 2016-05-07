@@ -2,20 +2,32 @@ package br.com.elo7.spacecraft.model;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import br.com.elo7.spacecraft.commons.exception.CoordinateException;
 import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
+import br.com.elo7.spacecraft.commons.validation.groups.ExecuteCommands;
 import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 public class Spacecraft {
 	
+	@NotNull(groups={ExecuteCommands.class})
 	private Integer coordinateX;
 	
+	@NotNull(groups={ExecuteCommands.class})
 	private Integer coordinateY;
 	
+	@NotBlank(groups={ExecuteCommands.class})
 	private String cardinalPoint;
 	
+	@NotEmpty(groups={ExecuteCommands.class})
 	private List<String> commands;
 	
+	@Valid
 	private Plateau plateau;
 	
 	private SpacecraftRepository spacecraftRepository;

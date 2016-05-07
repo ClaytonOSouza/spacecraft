@@ -32,4 +32,8 @@ public class Errors implements Serializable {
 		errors.add(error);
 	}
 	
+	public void add(ErrorExceptionCode errorExceptionCode, Object invalidValue, String param, String message) {
+		this.errors.add(new Error(errorExceptionCode, String.valueOf(invalidValue), param, message));
+	}
+	
 }
