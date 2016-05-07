@@ -1,6 +1,5 @@
 package br.com.elo7.spacecraft.business.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
@@ -49,7 +48,7 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		}
 	}
 	
-	@Autowired
+	//@Autowired
 	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {
 		this.spacecraftRepository = spacecraftRepository;
 	}
