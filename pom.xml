@@ -30,7 +30,7 @@
 		
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<resteasy.version>3.0.16.Final</resteasy.version>
-		<resteasy.jaxb.provider.version>1.0.2.GA</resteasy.jaxb.provider.version>
+		<jackson.annotations.version>2.7.4</jackson.annotations.version>
 		
 	</properties>
 	
@@ -129,8 +129,8 @@
 			
 			<dependency>
 				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-jaxb-provider</artifactId>
-				<version>${resteasy.jaxb.provider.version}</version>
+				<artifactId>resteasy-jackson-provider</artifactId>
+				<version>${resteasy.version}</version>
 			</dependency>
 			
 			<!-- Jetty -->
@@ -186,12 +186,5 @@
 		</pluginManagement>
 		
 	</build>
-	
-	<repositories>
-		<repository>
-          <id>jboss.org-maven</id>
-          <url>http://repository.jboss.org/maven2/</url>
-        </repository>
-	</repositories>
 	
 </project>
