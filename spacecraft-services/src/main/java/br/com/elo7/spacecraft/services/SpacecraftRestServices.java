@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import br.com.elo7.spacecraft.business.SpacecraftBO;
-import br.com.elo7.spacecraft.commons.exception.CrashException;
-import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
 import br.com.elo7.spacecraft.model.Plateau;
 import br.com.elo7.spacecraft.model.Plateau.PlateauBuilder;
 import br.com.elo7.spacecraft.model.Spacecraft;
@@ -58,12 +56,10 @@ public class SpacecraftRestServices {
 	@Produces({MediaTypeExtends.APPLICATION_JSON, MediaTypeExtends.APPLICATION_JSON_UTF8})
 	public Response myTest(@PathParam("id") Long id) {
 		
-		throw new CrashException(ErrorExceptionCode.COORDINATE_ERROR);
+		StringBuilder builder = new StringBuilder("{\"id\" : ");
+		builder.append(id + "}");
 		
-//		StringBuilder builder = new StringBuilder("{\"id\" : ");
-//		builder.append(id + "}");
-//		
-//		return Response.ok(builder.toString()).build();
+		return Response.ok(builder.toString()).build();
 	}
 	
 }

@@ -27,6 +27,7 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<mockito.version>1.10.19</mockito.version>
 		<fixture-factory.version>3.1.0</fixture-factory.version>
+		<el.version>2.2.6</el.version>
 		
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<resteasy.version>3.0.16.Final</resteasy.version>
@@ -89,10 +90,18 @@
 			</dependency>
 			
 			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<version>${el.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
 				<groupId>br.com.six2six</groupId>
 				<artifactId>fixture-factory</artifactId>
 				<version>${fixture-factory.version}</version>
 			</dependency>
+			
 			
 			<!-- Several Dependencies -->
 			

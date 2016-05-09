@@ -18,6 +18,10 @@ public class BeanValidator {
 	
 	public BeanValidator(){}
 	
+	public BeanValidator(Validator validator) {
+		this.validator = validator;
+	}
+	
 	public void validate(Object object, Class<?>... groups) throws BeanValidatorException {
 		checkConstraints(object, false, groups);
 	}
