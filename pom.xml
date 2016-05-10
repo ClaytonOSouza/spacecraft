@@ -14,6 +14,7 @@
 		<module>spacecraft-model</module>
 		<module>spacecraft-commons</module>
 		<module>spacecraft-services</module>
+		<module>spacecraft-data</module>
 	</modules>
 	
 	<properties>
@@ -63,6 +64,12 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>spacecraft-services</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>spacecraft-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			

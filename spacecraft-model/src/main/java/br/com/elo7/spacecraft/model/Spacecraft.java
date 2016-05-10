@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -24,12 +25,15 @@ public class Spacecraft {
 	@NotBlank(groups={ExecuteCommands.class})
 	private String cardinalPoint;
 	
+	@JsonIgnore
 	@NotEmpty(groups={ExecuteCommands.class})
 	private List<String> commands;
 	
+	@JsonIgnore
 	@Valid
 	private Plateau plateau;
 	
+	@JsonIgnore
 	private SpacecraftRepository spacecraftRepository;
 	
 	private Spacecraft(Integer coordinateX, Integer coordinateY, 
@@ -62,6 +66,7 @@ public class Spacecraft {
 		return plateau;
 	}
 	
+	@JsonIgnore
 	public void verifyPlateuCoordinates() {
 		
 		if(coordinateX > plateau.getUpperRightX() || coordinateX < 0) {
@@ -73,6 +78,7 @@ public class Spacecraft {
 		}
 	}
 	
+	@JsonIgnore
 	public Spacecraft getSpacecraftByCoordenates() {
 		return spacecraftRepository.getSpacecraftByCoordenates(this); 
 	}

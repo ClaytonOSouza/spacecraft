@@ -51,7 +51,7 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		}
 	}
 	
-	//@Autowired
+	@Autowired
 	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {
 		this.spacecraftRepository = spacecraftRepository;
 	}
