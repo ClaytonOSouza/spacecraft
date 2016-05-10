@@ -1,20 +1,28 @@
 package br.com.elo7.spacecraft.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.elo7.spacecraft.commons.exception.CoordinateException;
 import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
 import br.com.elo7.spacecraft.commons.validation.groups.ExecuteCommands;
-import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
-public class Spacecraft {
+@JsonSerialize(include = Inclusion.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Spacecraft implements Serializable {
+	
+	private static final long serialVersionUID = -7040631087110362298L;
+	
 	
 	@NotNull(groups={ExecuteCommands.class})
 	private Integer coordinateX;
@@ -32,9 +40,6 @@ public class Spacecraft {
 	@JsonIgnore
 	@Valid
 	private Plateau plateau;
-	
-	@JsonIgnore
-	private SpacecraftRepository spacecraftRepository;
 	
 	private Spacecraft(Integer coordinateX, Integer coordinateY, 
 						String cardinalPoint, List<String> commands, Plateau plateau) {
@@ -78,15 +83,6 @@ public class Spacecraft {
 		}
 	}
 	
-	@JsonIgnore
-	public Spacecraft getSpacecraftByCoordenates() {
-		return spacecraftRepository.getSpacecraftByCoordenates(this); 
-	}
-	
-	public void persist() {
-		spacecraftRepository.persist(this);
-	}
-	
 	public void setCoordinateX(Integer coordinateX) {
 		this.coordinateX = coordinateX;
 	}
@@ -97,10 +93,6 @@ public class Spacecraft {
 	
 	public void setCardinalPoint(String cardinalPoint) {
 		this.cardinalPoint = cardinalPoint;
-	}
-	
-	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {
-		this.spacecraftRepository = spacecraftRepository;
 	}
 	
 	

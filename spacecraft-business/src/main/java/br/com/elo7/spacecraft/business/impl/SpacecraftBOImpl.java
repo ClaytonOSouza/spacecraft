@@ -9,13 +9,14 @@ import br.com.elo7.spacecraft.commons.exception.CrashException;
 import br.com.elo7.spacecraft.commons.validation.BeanValidator;
 import br.com.elo7.spacecraft.commons.validation.ErrorExceptionCode;
 import br.com.elo7.spacecraft.commons.validation.groups.ExecuteCommands;
+import br.com.elo7.spacecraft.data.SpacecraftDAO;
 import br.com.elo7.spacecraft.model.Spacecraft;
-import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 
 @Service
 public class SpacecraftBOImpl implements SpacecraftBO {
 	
-	private SpacecraftRepository spacecraftRepository;
+	
+	private SpacecraftDAO spacecraftDAO;
 	
 	private BeanValidator beanValidator;
 	
@@ -24,8 +25,6 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 	public Spacecraft executeCommands(Spacecraft spacecraft) {
 		
 		beanValidator.validate(spacecraft, ExecuteCommands.class);
-		
-		spacecraft.setSpacecraftRepository(spacecraftRepository);
 		
 		spacecraft.getCommands().forEach(command -> {
 			
@@ -37,14 +36,14 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		
 		this.validateCrash(spacecraft);
 		
-		spacecraft.persist();
+		spacecraftDAO.persist(spacecraft);
 		
 		return spacecraft;
 	}
 	
 	private void validateCrash(Spacecraft spacecraft) {
 		
-		Spacecraft spacecraftReturned = spacecraft.getSpacecraftByCoordenates();
+		Spacecraft spacecraftReturned = spacecraftDAO.getSpacecraftByCoordenates(spacecraft);
 		
 		if(spacecraftReturned != null) {
 			throw new CrashException(ErrorExceptionCode.CRASH_ERROR);
@@ -52,12 +51,13 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 	}
 	
 	@Autowired
-	public void setSpacecraftRepository(SpacecraftRepository spacecraftRepository) {
-		this.spacecraftRepository = spacecraftRepository;
+	public void setSpacecraftDAO(SpacecraftDAO spacecraftDAO) {
+		this.spacecraftDAO = spacecraftDAO;
 	}
 	
 	@Autowired
 	public void setBeanValidator(BeanValidator beanValidator) {
 		this.beanValidator = beanValidator;
 	}
+	
 }

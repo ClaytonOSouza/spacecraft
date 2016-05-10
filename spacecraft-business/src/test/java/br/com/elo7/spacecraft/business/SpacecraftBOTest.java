@@ -18,8 +18,8 @@ import br.com.elo7.spacecraft.business.impl.SpacecraftBOImpl;
 import br.com.elo7.spacecraft.commons.exception.CoordinateException;
 import br.com.elo7.spacecraft.commons.exception.CrashException;
 import br.com.elo7.spacecraft.commons.validation.BeanValidator;
+import br.com.elo7.spacecraft.data.SpacecraftDAO;
 import br.com.elo7.spacecraft.model.Spacecraft;
-import br.com.elo7.spacecraft.model.repository.SpacecraftRepository;
 import br.com.elo7.spacecraft.model.template.SpacecraftTemplate;
 
 public class SpacecraftBOTest {
@@ -28,7 +28,7 @@ public class SpacecraftBOTest {
 	private SpacecraftBOImpl spacecraftBO;
 	
 	@Mock
-	private SpacecraftRepository spacecraftRepository;
+	private SpacecraftDAO spacecraftDAO;
 	
 	@Mock
 	private BeanValidator beanValidator;
@@ -37,7 +37,7 @@ public class SpacecraftBOTest {
 	public void before() {
 		loadTemplatesForFixture();
 		initMocks(this);
-		spacecraftBO.setSpacecraftRepository(spacecraftRepository);
+		spacecraftBO.setSpacecraftDAO(spacecraftDAO);
 		spacecraftBO.setBeanValidator(beanValidator);
 	}
 	
@@ -46,12 +46,12 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_COORDINATE_X);
 		
-		when(spacecraftRepository.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCoordinateX(), equalTo(1));
-		verify(spacecraftRepository, times(1)).persist(spacecraft);
+		verify(spacecraftDAO, times(1)).persist(spacecraft);
 	}
 	
 	@Test
@@ -59,12 +59,12 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_COORDINATE_Y);
 		
-		when(spacecraftRepository.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCoordinateY(), equalTo(1));
-		verify(spacecraftRepository, times(1)).persist(spacecraft);
+		verify(spacecraftDAO, times(1)).persist(spacecraft);
 	}
 	
 	@Test
@@ -72,12 +72,12 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_CARDINAL_POINT);
 		
-		when(spacecraftRepository.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
 		assertThat(spacecraftReturn.getCardinalPoint(), equalTo("S"));
-		verify(spacecraftRepository, times(1)).persist(spacecraft);
+		verify(spacecraftDAO, times(1)).persist(spacecraft);
 	}
 	
 	@Test(expected = CoordinateException.class)
@@ -117,7 +117,7 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_CRASH);
 		
-		when(spacecraftRepository.getSpacecraftByCoordenates(spacecraft)).thenReturn(spacecraft);
+		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(spacecraft);
 		
 		spacecraftBO.executeCommands(spacecraft);
 	}
