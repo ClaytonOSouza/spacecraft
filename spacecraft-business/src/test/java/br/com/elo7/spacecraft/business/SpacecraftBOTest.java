@@ -46,7 +46,7 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_COORDINATE_X);
 		
-		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordinates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
@@ -59,7 +59,7 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_COORDINATE_Y);
 		
-		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordinates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
@@ -72,7 +72,7 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_CARDINAL_POINT);
 		
-		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(null);
+		when(spacecraftDAO.getSpacecraftByCoordinates(spacecraft)).thenReturn(null);
 		
 		Spacecraft spacecraftReturn = spacecraftBO.executeCommands(spacecraft);
 		
@@ -117,7 +117,7 @@ public class SpacecraftBOTest {
 		
 		Spacecraft spacecraft = from(Spacecraft.class).gimme(SpacecraftTemplate.VALIDATE_CRASH);
 		
-		when(spacecraftDAO.getSpacecraftByCoordenates(spacecraft)).thenReturn(spacecraft);
+		when(spacecraftDAO.getSpacecraftByCoordinates(spacecraft)).thenReturn(spacecraft);
 		
 		spacecraftBO.executeCommands(spacecraft);
 	}

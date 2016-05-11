@@ -1,5 +1,7 @@
 package br.com.elo7.spacecraft.business.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import br.com.elo7.spacecraft.model.Spacecraft;
 @Service
 public class SpacecraftBOImpl implements SpacecraftBO {
 	
+	private static final Logger LOG = LoggerFactory.getLogger(SpacecraftBOImpl.class);
 	
 	private SpacecraftDAO spacecraftDAO;
 	
@@ -24,9 +27,14 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 	@Override
 	public Spacecraft executeCommands(Spacecraft spacecraft) {
 		
+		LOG.info("Starting execute commands - coordinateX:{} - coordinateX:{}", 
+				spacecraft.getCoordinateX(), spacecraft.getCoordinateY());
+		
 		beanValidator.validate(spacecraft, ExecuteCommands.class);
 		
 		spacecraft.getCommands().forEach(command -> {
+			
+			LOG.debug("Executing command - {}", command);
 			
 			CommandsStrategy commandsStrategy = CommandsStrategy.getCommandsStrategy(command);
 			
@@ -38,14 +46,21 @@ public class SpacecraftBOImpl implements SpacecraftBO {
 		
 		spacecraftDAO.persist(spacecraft);
 		
+		LOG.info("Finishing execute commands - coordinateX {} - coordinateX {}", 
+				spacecraft.getCoordinateX(), spacecraft.getCoordinateY());
+		
 		return spacecraft;
 	}
 	
 	private void validateCrash(Spacecraft spacecraft) {
 		
-		Spacecraft spacecraftReturned = spacecraftDAO.getSpacecraftByCoordenates(spacecraft);
+		Spacecraft spacecraftReturned = spacecraftDAO.getSpacecraftByCoordinates(spacecraft);
 		
 		if(spacecraftReturned != null) {
+			
+			LOG.error("Bad request. There is an other spacecraft in the area informed - errorCode:{}", 
+					ErrorExceptionCode.CRASH_ERROR.getCode());
+			
 			throw new CrashException(ErrorExceptionCode.CRASH_ERROR);
 		}
 	}

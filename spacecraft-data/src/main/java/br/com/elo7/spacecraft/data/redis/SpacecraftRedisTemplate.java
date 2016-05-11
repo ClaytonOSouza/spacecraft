@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class SpacecraftRedisTemplate {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(SpacecraftRedisTemplate.class);	
 	
 	@Autowired
 	private RedisTemplate redisTemplate;
@@ -40,7 +44,7 @@ public class SpacecraftRedisTemplate {
 			}
 			
 		} catch(Exception e) {
-			//TODO:implements LOG
+			LOG.error(String.format("Error on Redis PUT for key[%s] and value[%s]", key, obj));
 		}
 	}
 	
@@ -56,7 +60,7 @@ public class SpacecraftRedisTemplate {
 			}
 			
 		} catch(Exception e) {
-			//TODO:implements LOG
+			LOG.error(String.format("Error on Redis GET for key[%s]", key));
 		}
 		
 		return value;
@@ -78,7 +82,7 @@ public class SpacecraftRedisTemplate {
 			}
 			
 		} catch (Exception e) {
-			//TODO:implements LOG
+			LOG.error(String.format("Error on encode key for key[%s]", key));
 		}
 		
 		return keyEncoded;
