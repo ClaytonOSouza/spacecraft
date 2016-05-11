@@ -27,6 +27,7 @@
 		<!-- app config -->
 		<install.log.dir>/var/log/spacecraft/</install.log.dir>
 		<spring.file.load.prefix>file:///</spring.file.load.prefix>
+		<install.conf.dir>/opt/spacecraft/conf/</install.conf.dir>
 		
 		<!-- Test imports -->
 		<junit.version>4.12</junit.version>
