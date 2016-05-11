@@ -11,9 +11,9 @@
     - Criar diretório "/var/log/spacecraft" e atribuir permissão chmod -R 777 no diretório spacecraft.
     Neste diretório irão ficar os logs da aplicação.
 
-## Instancia do Redis
+## Instância do Redis
 
-	- O projeto spacecraft utiliza uma instancia do redis, por tanto basta subir uma instancia simples do redis na
+	- O projeto spacecraft utiliza o redis, por tanto basta subir uma instância simples do redis na
 	porta 6379.
 
 ## Executar o buil e start do projeto
